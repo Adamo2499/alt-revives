@@ -28,8 +28,8 @@ function revive() {
   ) {
     if (player.HasCollectible(CollectibleType.LAZARUS_RAGS)) {
       reviveAsTLazarus(player);
-    } else {
-      player.Revive();
+    } else if (player.HasCollectible(CollectibleType.JUDAS_SHADOW)) {
+      reviveAsTJudas(player);
     }
   }
 }
@@ -46,4 +46,15 @@ function reviveAsTLazarus(player: EntityPlayer) {
   player.AnimateCollectible(CollectibleType.LAZARUS_RAGS);
   player.RemoveCollectible(CollectibleType.LAZARUS_RAGS);
   player.AddHearts(6);
+}
+
+function reviveAsTJudas(player: EntityPlayer) {
+  player.ChangePlayerType(PlayerType.JUDAS_B);
+  player.AddMaxHearts(-24, false);
+  player.AddSoulHearts(-24);
+  player.AddBlackHearts(-24);
+  player.Revive();
+  player.AnimateCollectible(CollectibleType.JUDAS_SHADOW);
+  player.RemoveCollectible(CollectibleType.JUDAS_SHADOW);
+  player.AddBlackHearts(6);
 }
