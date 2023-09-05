@@ -5,6 +5,7 @@ import {
 } from "isaac-typescript-definitions";
 
 const MOD_NAME = "alt-revives";
+let reviveTimer = 45;
 
 // This function is run when your mod first initializes.
 export function main(): void {
@@ -21,15 +22,16 @@ export function main(): void {
 
 function revive() {
   const player = Isaac.GetPlayer();
-  if (
-    player.IsDead() &&
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
-    player.GetPlayerType() >= 21
-  ) {
-    if (player.HasCollectible(CollectibleType.LAZARUS_RAGS)) {
-      reviveAsTLazarus(player);
-    } else if (player.HasCollectible(CollectibleType.JUDAS_SHADOW)) {
-      reviveAsTJudas(player);
+  if (player.IsDead()) {
+    for (reviveTimer = 45; reviveTimer >= 0; reviveTimer--) {
+      continue;
+    }
+    if (reviveTimer === 0 && player.WillPlayerRevive()) {
+      if (player.HasCollectible(CollectibleType.LAZARUS_RAGS)) {
+        reviveAsTLazarus(player);
+      } else if (player.HasCollectible(CollectibleType.JUDAS_SHADOW)) {
+        reviveAsTJudas(player);
+      }
     }
   }
 }
@@ -56,5 +58,5 @@ function reviveAsTJudas(player: EntityPlayer) {
   player.Revive();
   player.AnimateCollectible(CollectibleType.JUDAS_SHADOW);
   player.RemoveCollectible(CollectibleType.JUDAS_SHADOW);
-  player.AddBlackHearts(6);
+  player.AddBlackHearts(4);
 }
