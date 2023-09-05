@@ -1,0 +1,24 @@
+{
+  "name": "alt-revives",
+  "version": "0.0.0",
+  "description": "A mod for The Binding of Isaac: Repentance.",
+  "keywords": [
+    "isaac",
+    "mod",
+    "rebirth",
+    "afterbirth",
+    "repentance"
+  ],
+  "license": "GPL-3.0",
+  "type": "module",
+  "dependencies": {
+    "isaac-typescript-definitions": "^16.0.0",
+    "isaacscript": "^3.10.1",
+    "isaacscript-common": "^33.0.1",
+    "isaacscript-lint": "^5.8.5",
+    "isaacscript-spell": "^1.2.41",
+    "isaacscript-tsconfig": "^4.0.0",
+    "typescript": "^5.2.2",
+    "typescript-to-lua": "^1.19.0"
+  }
+}
